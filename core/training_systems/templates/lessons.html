@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static%}
+
+{% block style %}
+    <style>
+        /* dt {
+            margin-top: 20px;
+            margin-bottom: 3px;
+        }
+        dd {
+            margin-top: 0;
+        } */
+        dl {
+            display: flex;
+        }
+
+    </style>
+{% endblock %}
+{% block body %}
+    <h1>Для курса "{{ course_name }}" доступны следующие уроки</h1>
+    {% for lesson in lessons %}
+        <dl>
+            <dt> Урок {{lesson.number}}: {{ lesson.name }}</dd>
+            <dd><a href="{{ lesson.video }}">Видео</a></dd>
+        </dl>
+    {% endfor %}
+    <form action="/group">
+        <input type="hidden" name="cr" value="{{course_name}}">
+        <button type="submit">Записаться</button>
+    </form>
+{% endblock %}
+

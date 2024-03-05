@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static%}
+{% block style %}
+    <style>
+        /* a > h2 {
+            margin-bottom: 5px;
+        } */
+        dt {
+            display: flex;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <h1>Доступны курсы</h1>
+    <form action="/group">
+    {% for course in courses %}
+        <dl>
+            <dt>
+                <input type="checkbox" name="cr" value="{{course.name}}">
+                <a href="lessons?l={{course.name}}&ie=utf-8"><h2>{{course.name}}</h2></a>
+            </dt>
+            <dd>Начало курса: {{course.date_start}}</dd>
+            <dd>Автор/преподаватель: {{course.author}}</dd>
+            <dd>Количество уроков: {{course.lessons}}</dd>
+            <dd>Количество слушателей: {{course.users_quantity}}</dd>
+        </dl>
+        {% endfor %}
+        <dl>
+            <button type="submit">Записаться</button>
+        </dl>
+</form>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static%}
+{% block style %}
+    <style>
+      
+    </style>
+{% endblock %}
+{% block body %}
+    <h1>Распределение слушателей по группам</h1>
+    <!-- <p>{{courses}}</p> -->
+    {% for gr in groups %}
+         <dl>
+            <dd>Группа: {{gr.name}} | Количество слушателей {{gr.users_quantity}}</dd>
+        </dl>
+    {% endfor %}
+    <form action="/group">
+        <input type="hidden" name="re" value="1">
+        <button type="submit">Перераспределить</button>
+    </form>
+{% endblock %}
